@@ -10,7 +10,6 @@ su = nonebot.get_driver().config.superusers
 #group_enable_list = ['209986093', '599342554', '726031097']
 group_enable_list=['188937258','756508792']
 
-load_init=
 
 admin_init = on_keyword(['$reset'], permission=SUPERUSER | PRIVATE_FRIEND)
 @admin_init.handle()

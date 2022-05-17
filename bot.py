@@ -25,6 +25,12 @@ nonebot.load_plugin('nonebot_plugin_gocqhttp')
 #nonebot.load_plugins('limelisest_group_manager')
 #nonebot.load_plugin('nonebot_plugin_bilibilibot')
 nonebot.load_plugins("lbot/plugins")
+
+nonebot.init(apscheduler_autostart=True)
+nonebot.init(apscheduler_config={
+    "apscheduler.timezone": "Asia/Shanghai"
+})
+
 # Please DO NOT modify this file unless you know what you are doing!
 # As an alternative, you should use command `nb` or modify `pyproject.toml` to load plugins
 # nonebot.load_from_toml("pyproject.toml")
