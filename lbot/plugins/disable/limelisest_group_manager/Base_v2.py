@@ -45,6 +45,7 @@ async def init(group, bot: Bot):
         jianzhang_list.append(userid)
     
     load_useridlist()
+    await bot.send_msg(user_id='778571299', message="群管初始化完成")
 
 
 def load_useridlist():

@@ -1,15 +1,23 @@
-from nonebot import Bot, on_command, on_notice, on_request, on_keyword
-import nonebot
+from nonebot import Bot, get_driver, on_notice, on_request, on_keyword
 from nonebot.adapters.onebot.v11.event import GroupRequestEvent, GroupIncreaseNoticeEvent, GroupDecreaseNoticeEvent, PrivateMessageEvent
 from nonebot.adapters.onebot.v11.permission import GROUP_ADMIN, GROUP_OWNER, PRIVATE_FRIEND
 from nonebot.permission import SUPERUSER
 from nonebot.adapters.onebot.v11.message import Message
 from .Base_v2 import *
-
+import nonebot
+import asyncio
 su = nonebot.get_driver().config.superusers
 #group_enable_list = ['209986093', '599342554', '726031097']
 group_enable_list=['188937258','756508792']
 
+async def start_init():
+    driver = get_driver()
+    BOT_ID = str(driver.config.bot_id)
+    ot = driver.bots[BOT_ID]
+    bot=Bot()
+    await init(group_enable_list, bot)
+
+asyncio.run(start_init())
 
 admin_init = on_keyword(['$reset'], permission=SUPERUSER | PRIVATE_FRIEND)
 @admin_init.handle()
@@ -64,3 +72,5 @@ user_exit_group = on_notice()
 async def user_exit_group_handle(bot: Bot, event: GroupDecreaseNoticeEvent):
     if f'{event.group_id}' in group_enable_list:
         await del_userid_in_list(bot, event)
+
+
